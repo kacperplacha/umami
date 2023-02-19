@@ -20,7 +20,7 @@ import Button from './Button';
 import useLocale from 'hooks/useLocale';
 import { dateFormat } from 'lib/date';
 import { chunk } from 'lib/array';
-import { dateLocales } from 'lib/lang';
+import { getDateLocale } from 'lib/lang';
 import Chevron from 'assets/chevron-down.svg';
 import Cross from 'assets/times.svg';
 import styles from './Calendar.module.css';
@@ -106,9 +106,14 @@ export default function Calendar({ date, minDate, maxDate, onChange }) {
 }
 
 const DaySelector = ({ date, minDate, maxDate, locale, onSelect }) => {
-  const startWeek = startOfWeek(date, { locale: dateLocales[locale] });
-  const startMonth = startOfMonth(date, { locale: dateLocales[locale] });
-  const startDay = subDays(startMonth, startMonth.getDay());
+  const dateLocale = getDateLocale(locale);
+  const weekStartsOn = dateLocale?.options?.weekStartsOn || 0;
+  const startWeek = startOfWeek(date, {
+    locale: dateLocale,
+    weekStartsOn,
+  });
+  const startMonth = startOfMonth(date);
+  const startDay = subDays(startMonth, startMonth.getDay() - weekStartsOn);
   const month = date.getMonth();
   const year = date.getFullYear();
 
@@ -118,7 +123,7 @@ const DaySelector = ({ date, minDate, maxDate, locale, onSelect }) => {
   }
 
   const days = [];
-  for (let i = 0; i < 35; i++) {
+  for (let i = 0; i < 42; i++) {
     days.push(addDays(startDay, i));
   }
 

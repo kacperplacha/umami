@@ -1,22 +1,28 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import Layout from 'components/layout/Layout';
-import WebsiteList from 'components/pages/WebsiteList';
+import Dashboard from 'components/pages/Dashboard';
 import useRequireLogin from 'hooks/useRequireLogin';
+import { useRouter } from 'next/router';
+import useUser from 'hooks/useUser';
 
 export default function DashboardPage() {
+  const {
+    query: { id },
+    isReady,
+    asPath,
+  } = useRouter();
   const { loading } = useRequireLogin();
-  const router = useRouter();
-  const { id } = router.query;
-  const userId = id?.[0];
+  const user = useUser();
 
-  if (loading) {
+  if (!user || !isReady || loading) {
     return null;
   }
 
+  const userId = id?.[0];
+
   return (
     <Layout>
-      <WebsiteList userId={userId} />
+      <Dashboard key={asPath} userId={user.id || userId} />
     </Layout>
   );
 }

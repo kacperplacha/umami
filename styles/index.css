@@ -1,6 +1,8 @@
 html,
 body {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Inter, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
+    Ubuntu, Cantrell, 'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
   font-weight: 400;
   line-height: 1.8;
   padding: 0;
@@ -21,20 +23,37 @@ body {
 }
 
 .zh-CN {
-  font-family: 'Noto Sans SC', sans-serif !important;
+  font-family: '方体', 'PingFang SC', '黑体', 'Heiti SC', 'Microsoft JhengHei UI',
+    'Microsoft JhengHei', Roboto, Noto, 'Noto Sans CJK SC', sans-serif !important;
 }
 
 .zh-TW {
-  font-family: 'Noto Sans TC', sans-serif !important;
+  font-family: '方體', 'PingFang TC', '黑體', 'Heiti TC', 'Microsoft JhengHei UI',
+    'Microsoft JhengHei', Roboto, Noto, 'Noto Sans CJK TC', sans-serif !important;
 }
 
 .ja-JP {
-  font-family: 'Noto Sans JP', sans-serif !important;
+  font-family: '游ゴシック体', YuGothic, 'ヒラギノ丸ゴ', 'Hiragino Sans', 'Yu Gothic UI',
+    'Meiryo UI', 'MS Gothic', Roboto, Noto, 'Noto Sans CJK JP', sans-serif !important;
+}
+
+.ko-KR {
+  font-family: 'Nanum Gothic', 'Apple SD Gothic Neo', 'Malgun Gothic', Roboto, Noto,
+    'Noto Sans CJK KR', sans-serif !important;
+}
+
+.ar-SA {
+  font-family: 'Geeza Pro', 'Arabic Typesetting', Roboto, Noto, 'Noto Naskh Arabic',
+    'Times New Roman', serif !important;
+}
+
+.si-LK {
+  font-family: 'Noto Sans Sinhala', Roboto, Noto, 'Times New Roman', sans-serif !important;
 }
 
 .he-IL {
-  display: inline-block;
-  direction: rtl;
+  font-family: 'New Peninim MT', 'Arial Hebrew', Gisha, 'Times New Roman', Roboto, Noto,
+    'Noto Sans Hebrew', sans-serif !important;
 }
 
 *,
@@ -69,6 +88,7 @@ a:visited {
 
 input[type='text'],
 input[type='password'],
+select,
 textarea {
   color: var(--gray900);
   background: var(--gray50);
@@ -128,6 +148,9 @@ svg {
 
 .container {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .row {
